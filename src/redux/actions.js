@@ -25,6 +25,15 @@ function fetchApps() {
   }
 }
 
+function fetchProducts() {
+  return dispatch => {
+    dispatch(requestApps())
+    return fetch(`assets/data.json`)
+      .then(response => response.json())
+      .then(json => dispatch(receiveApps(json)))
+  }
+}
+
 function shouldFetchApps(state) {
   const apps = state.apps
   if (apps.length==0) {
